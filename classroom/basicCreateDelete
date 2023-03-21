@@ -1,0 +1,37 @@
+//better way for element.addEventListener()
+const list = document.querySelector('#reading-list ul');
+
+// //Interacting with Form -- add readinglist
+const addForm = document.forms['add-list'];
+addForm.addEventListener('submit',function(e){
+   e.preventDefault(); // prevent from refresh
+   const value = addForm.querySelector('input[type="text"]').value; //add new reading list in the text box
+//    console.log(value);
+
+   //create element
+   const li = document.createElement('li')
+   const span = document.createElement('span')
+   const del = document.createElement('span')
+  
+   //add classes
+   span.classList.add('name') 
+   del.classList.add('delete') 
+
+   //add content
+   span.textContent = value ; 
+   del.textContent = 'delete';
+
+   //append to DOM
+    li.appendChild(span)
+    li.appendChild(del)
+    list.appendChild(li)
+
+});
+
+// DELETE BTN
+list.addEventListener('click',function(d) {
+    if (d.target.className == 'delete') {
+        const li = d.target.parentNode;
+        list.removeChild(li);
+    }
+})
